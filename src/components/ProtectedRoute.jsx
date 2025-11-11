@@ -1,0 +1,17 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+export default function ProtectedRoute({ children, adminOnly = false }) {
+  const { user } = useAuth();
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (adminOnly && user?.role !== "admin") {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return children;
+}
