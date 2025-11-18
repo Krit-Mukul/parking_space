@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import api from "../api/axios";
 import { ADMIN } from "../api/endpoints";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -24,7 +25,7 @@ export default function ManageSlots() {
       setSlots(res.data.slots || []);
     } catch (error) {
       console.error("Error fetching slots:", error);
-      alert("Failed to load slots");
+      toast.error("Failed to load slots");
     } finally {
       setLoading(false);
     }
@@ -41,10 +42,10 @@ export default function ManageSlots() {
     try {
       if (editingSlot) {
         await api.put(`${ADMIN.SLOTS}/${editingSlot._id}`, form);
-        alert("Slot updated successfully!");
+        toast.success("Slot updated successfully! 🅿️");
       } else {
         await api.post(ADMIN.SLOTS, form);
-        alert("Slot created successfully!");
+        toast.success("Slot created successfully! 🅿️");
       }
       setShowForm(false);
       setEditingSlot(null);
@@ -52,7 +53,7 @@ export default function ManageSlots() {
       fetchSlots();
     } catch (error) {
       console.error("Error saving slot:", error);
-      alert(error.response?.data?.message || "Failed to save slot");
+      toast.error(error.response?.data?.message || "Failed to save slot");
     }
   };
 

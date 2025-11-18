@@ -7,6 +7,7 @@ export const AUTH = {
 
 export const DRIVER = {
   VEHICLES: "/driver/vehicles",
+  DELETE_VEHICLE: (id) => `/driver/vehicles/${id}`,
   RESERVE: "/driver/reserve",
   PAY: "/driver/pay",
   RESERVATIONS: "/driver/reservations",

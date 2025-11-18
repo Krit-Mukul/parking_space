@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import api from "../api/axios";
 import { ADMIN } from "../api/endpoints";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -45,7 +46,7 @@ export default function AdminDashboard() {
       setDetailView('revenue');
     } catch (error) {
       console.error("Error fetching revenue details:", error);
-      alert("Failed to load revenue details");
+      toast.error("Failed to load revenue details");
     } finally {
       setDetailLoading(false);
     }
@@ -59,7 +60,7 @@ export default function AdminDashboard() {
       setDetailView('reservations');
     } catch (error) {
       console.error("Error fetching reservation details:", error);
-      alert("Failed to load reservation details");
+      toast.error("Failed to load reservation details");
     } finally {
       setDetailLoading(false);
     }
@@ -141,7 +142,7 @@ export default function AdminDashboard() {
             onClick={fetchRevenueDetails}
             className="bg-purple-50 p-4 rounded hover:bg-purple-100 transition text-left"
           >
-            <div className="text-2xl font-bold text-purple-600">${stats.totalRevenue.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-purple-600">₹{stats.totalRevenue.toFixed(2)}</div>
             <div className="text-sm text-gray-600">Total Revenue</div>
             <div className="text-xs text-purple-600 mt-1">Click for details →</div>
           </button>
@@ -154,7 +155,7 @@ export default function AdminDashboard() {
 
       {/* Detail View Modal */}
       {detailView && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 backdrop-contrast-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b flex justify-between items-center">
               <h3 className="text-2xl font-bold">
@@ -195,7 +196,7 @@ export default function AdminDashboard() {
                             {payment.user?.name || payment.user?.email || 'N/A'}
                           </td>
                           <td className="px-4 py-3 text-sm font-semibold text-green-600">
-                            ${payment.amount.toFixed(2)}
+                            ₹{payment.amount.toFixed(2)}
                           </td>
                           <td className="px-4 py-3 text-sm capitalize">
                             {payment.method || 'N/A'}
@@ -249,7 +250,7 @@ export default function AdminDashboard() {
                             {reservation.duration || 0}h
                           </td>
                           <td className="px-4 py-3 text-sm font-semibold text-blue-600">
-                            ${reservation.totalAmount?.toFixed(2) || '0.00'}
+                            ₹{reservation.totalAmount?.toFixed(2) || '0.00'}
                           </td>
                         </tr>
                       ))}

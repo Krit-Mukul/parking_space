@@ -21,17 +21,18 @@ export default function Home() {
                 online
               </p>
               <Link
-                to="/login"
-                className="inline-block bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition font-semibold"
-              >
-                Driver Login
-              </Link>
-              <Link
                 to="/signup"
-                className="inline-block bg-white text-blue-600 py-3 px-8 rounded-lg hover:bg-gray-100 transition font-semibold border-2 border-blue-600 mt-3 ml-2"
+                className="inline-block bg-white text-blue-600 py-3 px-8 rounded-lg hover:bg-gray-100 transition font-semibold border-2 border-blue-600 mt-3 "
               >
                 Driver Sign Up
               </Link>
+              <Link
+                to="/login"
+                className=" ml-2 inline-block bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition font-semibold"
+              >
+                Driver Login
+              </Link>
+              
             </div>
           </div>
 
@@ -42,9 +43,16 @@ export default function Home() {
               <p className="text-gray-600 mb-6">
                 Manage parking slots, validate tickets, and generate reports
               </p>
+              
+              {/* <Link
+                to="/admin/signup"
+                className="inline-block bg-white text-purple-600 py-3 px-8 rounded-lg hover:bg-gray-100 transition font-semibold border-2 border-purple-600  mt-3"
+              >
+                Admin signup
+              </Link> */}
               <Link
                 to="/admin/login"
-                className="inline-block bg-purple-600 text-white py-3 px-8 rounded-lg hover:bg-purple-700 transition font-semibold"
+                className="inline-block bg-purple-600 text-white py-3 px-8 rounded-lg hover:bg-purple-700 transition font-semibold ml-2 mt-3"
               >
                 Admin Login
               </Link>

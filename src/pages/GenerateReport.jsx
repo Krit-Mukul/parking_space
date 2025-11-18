@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import api from "../api/axios";
 import { ADMIN } from "../api/endpoints";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -25,7 +26,7 @@ export default function GenerateReport() {
       setReport(res.data);
     } catch (error) {
       console.error("Error fetching report:", error);
-      alert("Failed to generate report");
+      toast.error("Failed to generate report");
     } finally {
       setLoading(false);
     }
@@ -89,7 +90,7 @@ export default function GenerateReport() {
 
             <div className="bg-green-50 p-6 rounded-lg">
               <div className="text-3xl font-bold text-green-600">
-                ${report.totalRevenue?.toFixed(2) || "0.00"}
+                ₹{report.totalRevenue?.toFixed(2) || "0.00"}
               </div>
               <div className="text-sm text-gray-600 mt-2">Total Revenue</div>
             </div>
@@ -166,7 +167,7 @@ export default function GenerateReport() {
                           {reservation.vehicle?.number || "N/A"}
                         </td>
                         <td className="px-4 py-3">
-                          {new Date(reservation.startTime).toLocaleString()}
+                          {new Date(reservation.startAt).toLocaleString()}
                         </td>
                         <td className="px-4 py-3">
                           <span
@@ -180,7 +181,7 @@ export default function GenerateReport() {
                           </span>
                         </td>
                         <td className="px-4 py-3">
-                          ${reservation.totalAmount?.toFixed(2) || "0.00"}
+                          ₹{reservation.totalAmount?.toFixed(2) || "0.00"}
                         </td>
                       </tr>
                     ))}
